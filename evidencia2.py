@@ -20,11 +20,11 @@ while menu >= 1 and menu < 3:
             print("***REGISTRO DE VENTA***")
             cantidad = int(input("Cantidad de artículos que deseas registrar en la venta: "))
             for articulo in range (cantidad):
+                fecha_actual = datetime.date.today()
                 descripcion = input("Escriba la descripción del artículo: ")
                 cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
                 precio_venta = float(input("Precio de venta del artículo: $"))
-                fecha_actual = datetime.date.today()
-                ventas[descripcion] = cant_piezas,precio_venta,fecha_actual
+                ventas[fecha_actual] = descripcion, cant_piezas, precio_venta
                 precios_totales.append((cant_piezas)*(precio_venta))
                 total = sum(precios_totales)
             ventasdf = pd.DataFrame(ventas)
@@ -34,10 +34,12 @@ while menu >= 1 and menu < 3:
             precios_totales.clear()
             ventasdf.to_csv('historial.csv',mode = "a", index=True, header=True)
         if menu == 2:
-            pedirfecha = int(input("¿Cuál es la fecha que quieres consultar? "))
+            pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
             print("Fecha procesada")
-
-            
+            fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%Y").date()
+            print(fecha_procesada)
+            leercsv = pd.read_csv("historial.csv", index_col=0)
+            print(leercsv)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
 
