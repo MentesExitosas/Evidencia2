@@ -4,7 +4,8 @@ import os
 import sys
 import time
 
-diccionario_ventas = {}
+ventas = {}
+precios_totales = []
 menu = 1
 
 while menu >= 1 and menu < 3:
@@ -14,12 +15,17 @@ while menu >= 1 and menu < 3:
     try:
         if menu == 1:
             print("***REGISTRO DE VENTA***")
-            cantidad = int(input("¿Cuántos artículos deseas registrar en la venta?"))
+            cantidad = int(input("Cantidad de artículos que deseas registrar en la venta: "))
             for articulo in range (cantidad):
                 descripcion = input("Escriba la descripción del artículo:\n")
-                cant_piezas = int(input("¿Cuántas piezas vendió de este artículo?"))
-                precio_venta = int(input("¿Cuál fue el precio de venta del artículo"))
-            print("LISTO")
+                cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
+                precio_venta = float(input("Precio de venta del artículo: $"))
+                ventas[descripcion] = cant_piezas,precio_venta
+                precios_totales.append((cant_piezas)*(precio_venta))
+                total = sum(precios_totales)
+            print(ventas)
+            print(f"El total a pagar es: ${total}")
+            precios_totales.clear()
 
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
