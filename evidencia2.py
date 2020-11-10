@@ -8,8 +8,8 @@ import time
 ventas = {}
 precios_totales = []
 menu = 1
-historialdf = pd.read_csv('historial.csv',index_col=0)
-print(historialdf)
+
+
 
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
@@ -20,7 +20,7 @@ while menu >= 1 and menu < 3:
             print("***REGISTRO DE VENTA***")
             cantidad = int(input("Cantidad de artículos que deseas registrar en la venta: "))
             for articulo in range (cantidad):
-                descripcion = input("Escriba la descripción del artículo:\n")
+                descripcion = input("Escriba la descripción del artículo: ")
                 cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
                 precio_venta = float(input("Precio de venta del artículo: $"))
                 fecha_actual = datetime.date.today()
