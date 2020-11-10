@@ -33,7 +33,13 @@ while menu >= 1 and menu < 3:
             print(f"\nEl total a pagar es: ${total}")
             precios_totales.clear()
             ventasdf.to_csv('historial.csv',mode = "a", index=True, header=True)
-
+        if menu == 2:
+            pedirfecha = int(input("¿Cuál es la fecha que quieres consultar? "))
+            print("Fecha procesada")
+            fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%y").date()
+            for elemento in ventasdf:
+                if fecha_procesada in ventasdf:
+                    print(elemento)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
 
