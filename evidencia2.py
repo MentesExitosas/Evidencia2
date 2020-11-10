@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import os
 import sys
+import datetime
 import time
 
 ventas = {}
@@ -20,7 +21,8 @@ while menu >= 1 and menu < 3:
                 descripcion = input("Escriba la descripción del artículo:\n")
                 cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
                 precio_venta = float(input("Precio de venta del artículo: $"))
-                ventas[descripcion] = cant_piezas,precio_venta
+                fecha_actual = datetime.date.today()
+                ventas[descripcion] = cant_piezas,precio_venta,fecha_actual
                 precios_totales.append((cant_piezas)*(precio_venta))
                 total = sum(precios_totales)
             print(ventas)
