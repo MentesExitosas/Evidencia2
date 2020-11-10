@@ -5,11 +5,14 @@ import sys
 import datetime
 import time
 
-ventas = {}
+lista_fecha = []
+lista_descripcion = []
+lista_piezas = []
+lista_precios = []
 precios_totales = []
 menu = 1
 
-
+#inventario = pd.read_csv("historial.csv", index_col=0)
 
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
@@ -21,18 +24,24 @@ while menu >= 1 and menu < 3:
             cantidad = int(input("Cantidad de artículos que deseas registrar en la venta: "))
             for articulo in range (cantidad):
                 fecha_actual = datetime.date.today()
+                lista_fecha.append(fecha_actual)
                 descripcion = input("Escriba la descripción del artículo: ")
+                lista_descripcion.append(descripcion)
                 cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
+                lista_piezas.append(cant_piezas)
                 precio_venta = float(input("Precio de venta del artículo: $"))
-                ventas[fecha_actual] = descripcion, cant_piezas, precio_venta
+                lista_precios.append(precio_venta)
                 precios_totales.append((cant_piezas)*(precio_venta))
                 total = sum(precios_totales)
-            ventasdf = pd.DataFrame(ventas)
-            ventasdf.index = ["Cantidad","Precio","Fecha"]
-            print(ventasdf)
+            
+            frameVentas = pd.DataFrame(list(zip(lista_fecha, lista_descripcion, lista_piezas, lista_precios)))
+            frameVentas.columns = ["Fecha","Descripción","# de Piezas","Precio $"]
+            print(frameVentas)
+            
             print(f"\nEl total a pagar es: ${total}")
-            precios_totales.clear()
-            ventasdf.to_csv('historial.csv',mode = "a", index=True, header=True)
+
+            frameVentas.to_csv (r"historial.csv", index=True, header=True)
+            print("--EXPORTADO--")
         if menu == 2:
             pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
             print("Fecha procesada")
