@@ -38,6 +38,8 @@ while menu >= 1 and menu < 3:
             print("Fecha procesada")
             fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%Y").date()
             print(fecha_procesada)
+            leercsv = pd.read_csv("historial.csv", index_col=0)
+            print(leercsv)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
 
