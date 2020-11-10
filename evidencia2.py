@@ -5,11 +5,19 @@ import sys
 import datetime
 import time
 
-ventas = {}
+lista_fecha = []
+lista_descripcion = []
+lista_piezas = []
+lista_precios = []
 precios_totales = []
 menu = 1
+<<<<<<< HEAD
 fechas = ['']
 data = {(fechas):(ventas)}
+=======
+
+#inventario = pd.read_csv("historial.csv", index_col=0)
+>>>>>>> 4b0fda45cf5718ca9a98bf16984bcdfc30114b9d
 
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
@@ -20,19 +28,25 @@ while menu >= 1 and menu < 3:
             print("***REGISTRO DE VENTA***")
             cantidad = int(input("Cantidad de artículos que deseas registrar en la venta: "))
             for articulo in range (cantidad):
-                descripcion = input("Escriba la descripción del artículo: ")
-                cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
-                precio_venta = float(input("Precio de venta del artículo: $"))
                 fecha_actual = datetime.date.today()
-                ventas[descripcion] = cant_piezas,precio_venta,fecha_actual
+                lista_fecha.append(fecha_actual)
+                descripcion = input("Escriba la descripción del artículo: ")
+                lista_descripcion.append(descripcion)
+                cant_piezas = int(input("Número de piezas vendidas de este artículo: "))
+                lista_piezas.append(cant_piezas)
+                precio_venta = float(input("Precio de venta del artículo: $"))
+                lista_precios.append(precio_venta)
                 precios_totales.append((cant_piezas)*(precio_venta))
                 total = sum(precios_totales)
-            ventasdf = pd.DataFrame(ventas)
-            ventasdf.index = ["Cantidad","Precio","Fecha"]
-            print(ventasdf)
+            
+            frameVentas = pd.DataFrame(list(zip(lista_fecha, lista_descripcion, lista_piezas, lista_precios)))
+            frameVentas.columns = ["Fecha","Descripción","# de Piezas","Precio $"]
+            print(frameVentas)
+            
             print(f"\nEl total a pagar es: ${total}")
-            precios_totales.clear()
-            ventasdf.to_csv('historial.csv',mode = "a", index=True, header=True)
+
+            frameVentas.to_csv (r"historial.csv", index=True, header=True)
+            print("--EXPORTADO--")
         if menu == 2:
             pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
             print("Fecha procesada")
