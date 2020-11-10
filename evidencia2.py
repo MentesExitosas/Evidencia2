@@ -36,9 +36,10 @@ while menu >= 1 and menu < 3:
         if menu == 2:
             pedirfecha = int(input("¿Cuál es la fecha que quieres consultar? "))
             print("Fecha procesada")
-            fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%y").date()
-            for elemento in ventasdf:
-                if fecha_procesada in ventasdf:
+            fecha_procesada = datetime.datetime.strptime(pedirfecha, "%Y-%m-%d").date()
+            print(fecha_procesada)
+            for elemento in ventas:
+                if fecha_procesada in elemento:
                     print(elemento)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
