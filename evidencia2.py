@@ -8,8 +8,8 @@ import time
 ventas = {}
 precios_totales = []
 menu = 1
-
-
+fechas = ['']
+data = {(fechas):(ventas)}
 
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
