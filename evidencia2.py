@@ -8,6 +8,8 @@ import time
 ventas = {}
 precios_totales = []
 menu = 1
+historial = pd.read_csv('historial.csv',index_col=0)
+print(historial)
 
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
@@ -30,7 +32,7 @@ while menu >= 1 and menu < 3:
             print(ventasdf)
             print(f"El total a pagar es: ${total}")
             precios_totales.clear()
-             ventasdf.to_csv(r'historial.csv',index=True, header=True)
+            ventasdf.to_csv(r'historial.csv',index=True, header=True)
 
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
