@@ -25,7 +25,8 @@ while menu >= 1 and menu < 3:
                 ventas[descripcion] = cant_piezas,precio_venta,fecha_actual
                 precios_totales.append((cant_piezas)*(precio_venta))
                 total = sum(precios_totales)
-            print(ventas)
+            ventasdf = pd.DataFrame(ventas)
+            print(ventasdf)
             print(f"El total a pagar es: ${total}")
             precios_totales.clear()
 
