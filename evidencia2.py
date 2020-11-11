@@ -13,6 +13,7 @@ precios_totales = []
 menu = 1
 
 while menu >= 1 and menu < 3:
+    print("···BIENVENIDO A JOYERIA CISNEROS···")
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
     menu = int(input("\n¿Qué opción desea elegir?\nOpción: "))
 
@@ -50,5 +51,3 @@ while menu >= 1 and menu < 3:
                 print(filtro)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
-
-
