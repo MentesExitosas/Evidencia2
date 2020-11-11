@@ -12,8 +12,6 @@ lista_precios = []
 precios_totales = []
 menu = 1
 
-#inventario = pd.read_csv("historial.csv", index_col=0)
-
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
     menu = int(input("\n¿Qué opción desea elegir?\nOpción: "))
@@ -43,19 +41,13 @@ while menu >= 1 and menu < 3:
             frameVentas.to_csv ("historial.csv",mode = "a", index=False, header=True)
             print("--EXPORTADO--")
         if menu == 2:
-            inventario = pd.read_csv("historial.csv", index_col=0)
-            pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
-            #print("Fecha procesada")
-           # fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%Y").date()
-           # print(fecha_procesada)
-          #  str(fecha_procesada)
-            #leercsv = pd.read_csv("historial.csv", index_col=0)
-            #print(leercsv)
-            #frameVentas.loc[datetime.date(fecha_procesada)]
-           # filtro = inventario.loc[datetime.date(fecha_procesada): datetime.date(fecha_procesada)]
-            filtro = inventario.loc[pedirfecha: pedirfecha]
-           # filtro = inventario.loc["2020-11-10": "2020-11-10"]
-            print(filtro)
+            if not os.path.exists("historial.csv"):
+                    print("EL ARCHIVO NO EXISTE, FAVOR DE REGISTRAR UNA VENTA")
+            else:
+                inventario = pd.read_csv("historial.csv", index_col=0)
+                pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
+                filtro = inventario.loc[pedirfecha: pedirfecha]
+                print(filtro)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
 
