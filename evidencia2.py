@@ -11,17 +11,8 @@ lista_piezas = []
 lista_precios = []
 precios_totales = []
 menu = 1
-<<<<<<< HEAD
-fechas = ['']
-data = {(fechas):(ventas)}
-=======
 
-<<<<<<< HEAD
-inventario = pd.read_csv("historial.csv", index_col=0)
-=======
 #inventario = pd.read_csv("historial.csv", index_col=0)
->>>>>>> 4b0fda45cf5718ca9a98bf16984bcdfc30114b9d
->>>>>>> 4102606758a836f11771bbb7e100b54ec8111acd
 
 while menu >= 1 and menu < 3:
     print("\n1. Registrar una venta\n2. Consultar ventas de un día específico\n3. Salir")
@@ -49,7 +40,7 @@ while menu >= 1 and menu < 3:
             
             print(f"\nEl total a pagar es: ${total}")
 
-            frameVentas.to_csv ("historial.csv",mode = "a", index=True, header=True)
+            frameVentas.to_csv ("historial.csv",mode = "a", index=True, header=False)
             print("--EXPORTADO--")
         if menu == 2:
             pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
