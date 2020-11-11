@@ -40,15 +40,22 @@ while menu >= 1 and menu < 3:
             
             print(f"\nEl total a pagar es: ${total}")
 
-            frameVentas.to_csv ("historial.csv",mode = "a", index=True, header=False)
+            frameVentas.to_csv ("historial.csv",mode = "a", index=False, header=True)
             print("--EXPORTADO--")
         if menu == 2:
+            inventario = pd.read_csv("historial.csv", index_col=0)
             pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
-            print("Fecha procesada")
-            fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%Y").date()
-            print(fecha_procesada)
-            leercsv = pd.read_csv("historial.csv", index_col=0)
-            print(leercsv)
+            #print("Fecha procesada")
+           # fecha_procesada = datetime.datetime.strptime(pedirfecha, "%d/%m/%Y").date()
+           # print(fecha_procesada)
+          #  str(fecha_procesada)
+            #leercsv = pd.read_csv("historial.csv", index_col=0)
+            #print(leercsv)
+            #frameVentas.loc[datetime.date(fecha_procesada)]
+           # filtro = inventario.loc[datetime.date(fecha_procesada): datetime.date(fecha_procesada)]
+            filtro = inventario.loc[pedirfecha: pedirfecha]
+           # filtro = inventario.loc["2020-11-10": "2020-11-10"]
+            print(filtro)
     except Exception:   
         print(f"Ocurrió un error {sys.exc_info()[0]}")
 
