@@ -45,7 +45,7 @@ while menu >= 1 and menu < 3:
                     print("EL ARCHIVO NO EXISTE, FAVOR DE REGISTRAR UNA VENTA")
             else:
                 inventario = pd.read_csv("historial.csv", index_col=0)
-                pedirfecha = input("¿Cuál es la fecha que quieres consultar? ")
+                pedirfecha = input("¿Cuál es la fecha que quieres consultar? Formato: Año-Mes-Día: ")
                 filtro = inventario.loc[pedirfecha: pedirfecha]
                 print(filtro)
     except Exception:   
